@@ -1,8 +1,10 @@
 package com.petfood.mrp.web.action;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,12 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.google.gson.Gson;
 import com.petfood.mrp.model.Customer;
+import com.petfood.mrp.model.DailySchedule;
 import com.petfood.mrp.model.Product;
 import com.petfood.mrp.web.manager.CustomerManager;
+import com.petfood.mrp.web.manager.DailyScheduleManager;
 import com.petfood.mrp.web.manager.ProductManager;
 
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -25,28 +30,42 @@ public class MrpAction extends AbstractAction {
     @Autowired
     private ProductManager productManager;
 
-    private List<String> scheduleDtLst;
-    private String scheduleDt;
+    @Autowired
+    private DailyScheduleManager dailyScheduleManager;
+
+    private List<Date> scheduleDtLst;
+    private Date scheduleDt;
     private List<Customer> customers;
     private String cusCode;
     private List<Product> products;
+    private List<DailySchedule> scheduleLst;
+    private String scheduleJson;
 
     @Override
     public String execute() {
-        List<String> scheduleDtLst = new ArrayList<String>(10);
+        List<Date> scheduleDtLst = new ArrayList<Date>(10);
         LocalDate ld = LocalDate.now();
         for (int i = 0; i < 10; i++) {
-            scheduleDtLst.add(ld.minusDays(i).format(DateTimeFormatter.ISO_LOCAL_DATE));
+            scheduleDtLst.add(new Date(Date.from(ld.minusDays(i).atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime()));
         }
         this.scheduleDtLst = scheduleDtLst;
         return SUCCESS;
     }
 
     public String modifyMrp() {
-        // scheduleDt
-        // TODO
+        scheduleJson = new Gson().toJson(dailyScheduleManager.getByScheduleDt(scheduleDt));
         customers = customerManager.getAllCustomers();
         return "modifyMrp";
+    }
+
+    public String saveMrp() {
+        scheduleLst.removeAll(Collections.singleton(null));
+        for (DailySchedule ds : scheduleLst) {
+            ds.setSchedule_dt(scheduleDt);
+            ds.setCreate_by(getLogin().getUserCode());
+        }
+        dailyScheduleManager.save(scheduleDt, scheduleLst);
+        return execute();
     }
 
     public String ajaxProducts() {
@@ -54,15 +73,15 @@ public class MrpAction extends AbstractAction {
         return "json";
     }
 
-    public List<String> getScheduleDtLst() {
+    public List<Date> getScheduleDtLst() {
         return scheduleDtLst;
     }
 
-    public String getScheduleDt() {
+    public Date getScheduleDt() {
         return scheduleDt;
     }
 
-    public void setScheduleDt(String scheduleDt) {
+    public void setScheduleDt(Date scheduleDt) {
         this.scheduleDt = scheduleDt;
     }
 
@@ -80,6 +99,18 @@ public class MrpAction extends AbstractAction {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public List<DailySchedule> getScheduleLst() {
+        return scheduleLst;
+    }
+
+    public void setScheduleLst(List<DailySchedule> scheduleLst) {
+        this.scheduleLst = scheduleLst;
+    }
+
+    public String getScheduleJson() {
+        return scheduleJson;
     }
 
 }

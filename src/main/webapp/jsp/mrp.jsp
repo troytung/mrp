@@ -25,7 +25,7 @@ $(function() {
 <div class="w3-container">
   <p>點選日期可編輯排單</p>
   <ul class="w3-ul w3-hoverable w3-border">
-  <s:iterator value="scheduleDtLst">
+  <s:iterator value="scheduleDtLst" var="d">
     <li ref="<s:property/>"><s:property/></li>
   </s:iterator>
   </ul>
