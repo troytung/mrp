@@ -1,0 +1,38 @@
+[#ftl]
+<div class="point">
+<section class="topmenuArea">
+  <ul class="topmenuBox">
+    <li><a href="home.action" [@s.if test="actionName == 'home'"]class="now"[/@s.if]>home</a></li>
+    <li><a href="trendsPlot.action" [@s.if test="actionName == 'trendsPlot'"]class="now"[/@s.if]>SpiderMan Trend Plot</a></li>
+    <li><a href="list.action" [@s.if test="actionName == 'list'"]class="now"[/@s.if]>SpiderMan List</a></li>
+    <li><a href="report.action" [@s.if test="actionName == 'report'"]class="now"[/@s.if]>Report</a></li>
+    <li><a href="channel.action" [@s.if test="actionName == 'channel'"]class="now"[/@s.if]>Channel</a></li>
+    [@s.if test="login.admin"]
+    <li><a href="category.action" [@s.if test="actionName == 'category'"]class="now"[/@s.if]>Category</a></li>
+    <li><a href="emailCategory.action" [@s.if test="actionName == 'emailCategory'"]class="now"[/@s.if]>Email Category</a></li>
+    <li><a href="account.action" [@s.if test="actionName == 'account'"]class="now"[/@s.if]>Create Account</a></li>
+    [/@s.if]
+  </ul>
+  <div class="topmenuline Shadow1"></div>
+  <span class="pullBox Shadow1"></span>
+</section>
+</div>
+<script>
+$(".topmenuBox li a").click(function() {
+  $(".topmenuBox li a").removeClass("now");
+  $(this).addClass("now");
+});
+var showText='+';
+var hideText='-';
+var is_visible = false;
+$(".pullBox").html(showText);
+$('.pullBox').click(function() {
+  is_visible = !is_visible;
+  $(".pullBox").html( (!is_visible) ? showText : hideText);
+  if(is_visible==false){
+    $('.topmenuBox').slideUp();
+  }else {
+    $('.topmenuBox').slideDown();
+  }
+});
+</script>

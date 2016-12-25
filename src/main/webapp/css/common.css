@@ -1,0 +1,172 @@
+@charset "utf-8";
+*{border-radius:6px;font-family:Arial,sans-serif;}
+body{
+	margin:0;padding:0;
+	position:relative;
+	display:block;
+	border-radius:0;
+	font-size:100%;}
+body.loginPage{
+	background:url(../img/bg1.jpg) center top no-repeat;
+	padding:2% 0 0;
+}
+body.trendPage,body.listPage{
+	background:url(../img/bg3.jpg) center top no-repeat;
+	padding:0 0 2%;
+	background-attachment:fixed;
+}	
+.Shadow{
+-moz-box-shadow: 0 2px 5px rgba(117,117,117, 0.7);
+-webkit-box-shadow: 0 2px 5px rgba(117,117,117, 0.7);
+box-shadow: 0 2px 5px rgba(117,117,117, 0.7);
+}
+.Shadow1{
+-moz-box-shadow: 0 1px 5px rgba(117,117,117, 0.4);
+-webkit-box-shadow: 0 1px 5px rgba(117,117,117, 0.4);
+box-shadow: 0 1px 5px rgba(117,117,117, 0.4);
+}
+/*定位*/
+.point{
+	position:relative;
+	clear:both;
+	height:1px;
+	z-index:1;	
+}
+/*-----浮動用途-----*/
+.toleft{float:left;}
+.toright{float:right;}
+.clr{clear:both;}
+.noshow{display:none;}
+
+/*標題項目*/
+
+/*標準按鈕*/
+
+
+/*--------表單元素----------*/
+
+input[type=submit], input[type=button],
+input[type=reset], input[type=checkbox], 
+input[type=radio], input[type=date], 
+input[type=text], input[type=password], 
+input[type=number], input[type=email], 
+input[type=tel], input[type=url]{
+	padding:6px 4px;
+	color:#333;
+	border:1px solid #87a3bd;
+	/*-webkit-appearance:none;*/
+	font:normal 120%/1.4 Arial, Helvetica, sans-serif;
+	outline: none;
+}
+
+
+select{
+	font-size:13px;
+	line-height:1.2;
+	height:24px;
+	padding:0 4px;
+	color:#333;
+	border:1px solid #aaa;
+	display:inline-block;
+}
+.inputName{width:50%;}
+.inputAddr,.inputMail{width:80%;}
+.inputCell,.inputDate{width:30%;}
+
+.topmenuArea{
+	width:100%;
+	margin:0 auto;padding:0;
+	position:absolute;
+	display:block;
+	top:0;
+	z-index:5;
+}
+.topmenuBox{
+	list-style-type:none;
+	display:none;
+	background-color:#3de2bd;
+	border-radius:0;
+	padding:0 5px 5px;
+	overflow:hidden;
+}
+.topmenuBox li{
+	display:inline-block;
+	margin:0 1px 0 0;
+	float:left;	
+}
+.topmenuBox li a{
+	display:block;
+	font:normal 15px/1.6 Arial;
+	color:#fff;
+	text-decoration:none;
+	padding:4px 10px;
+	border-top-left-radius:0;
+	border-top-right-radius:0;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	
+}
+.topmenuBox li a:hover,.topmenuBox li a.now{
+	background-color: rgba(100,100,100, 0.3);	
+}
+.topmenuline{
+	height:1px;
+	background-color:#32bd9e;
+	border-radius:0;
+	border-top:1px solid #3de2bd;	
+}
+.pullBox{
+	display:block;
+	width:26px;	height:26px;
+	font:600 26px/1 Arial;
+	color:#fff;
+	text-align:center;
+	cursor:pointer;
+	background-color:#32bd9e;
+	border-top-left-radius:0;
+	border-top-right-radius:0;	
+}
+.pageContent{
+	margin:0 auto 10px;
+	padding:10px;	
+}
+.filterBox{
+	padding:0;
+	margin:0 auto;
+	border-radius:15px;
+	background:rgba(152,210,255, 0.7);
+	
+}
+.filterContent{
+	margin:0 auto;
+	padding:10px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 34%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(34%,#ffffff), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 34%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 34%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 34%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 34%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+	overflow:hidden;
+	position:relative;
+}
+
+.mainfoot{
+	border-radius:0;
+	width:100%;
+	margin:0 auto;
+	padding:5px 0;
+	text-align:center;
+	font:normal 13px/1.4 Arial;
+	color:#fff;
+	background-color:#555;	
+}
+
+.mainfoot a{
+	color:#00cece;
+	text-decoration:none;	
+}

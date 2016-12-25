@@ -1,0 +1,99 @@
+@charset "utf-8";
+@import "reset.css";
+@import "common.css";
+.mainfoot{position:absolute;bottom:0;}
+.trendBox{
+margin:0 auto;
+padding:0;
+background-color:#fff;	
+border-top-left-radius:0;
+border-top-right-radius:0;
+}
+
+.point{margin:0 auto 10px;}
+
+.filterContent ul{
+	
+	list-style-type:none;
+	overflow:hidden;
+	border-right:1px dotted #ddd;
+	border-radius:0;
+	float:left;	
+}
+.filterContent ul ul{border:0;}
+.filterContent ul li{
+	float:left;
+	font:normal 15px/1.1 Arial;
+	color:#555;
+	padding:0 15px 5px 0;	
+}
+.filterContent ul li.oneRow{width:99%;padding:0 0 5px 0;}
+.filterContent ul li:first-child{padding-left:0;}
+.filterContent ul li input[type=radio]{
+	vertical-align:0;	
+}
+.filterContent ul li input[type=text]{
+	padding:3px 6px;
+	font:normal 15px/1.2 Arial;
+	border:3px solid #ddd;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;	
+}
+.filterContent ul li input[type=text]:hover,.filterContent ul li input[type=text]:focus{
+	border:3px solid #33cccc;	
+}
+.filterContent ul li input[disabled]:hover{border:3px solid #ddd;}
+
+#drawBtn{
+margin-left:0.6%;
+display:inline-block;
+font:600 15px/1.4 Arial;
+background: #fbd568;
+background: -moz-linear-gradient(#fbd568, #ffb347);
+background: -ms-linear-gradient(#fbd568, #ffb347);
+background: -o-linear-gradient(#fbd568, #ffb347);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#fbd568), to(#ffb347));
+background: -webkit-linear-gradient(#fbd568, #ffb347);
+background: linear-gradient(#fbd568, #ffb347);
+border: 1px solid #f4ab4c;
+color: #996319;
+text-shadow: 0 1px rgba(255,255,255,0.3);
+cursor:pointer;
+padding:6px 15px;
+position:absolute;
+right:0;
+bottom:0;
+margin:auto 10px 10px auto;
+}
+#drawBtn:hover{
+box-shadow: inset 0 1px rgba(255,255,255,0.3), inset 0 20px 40px rgba(255,255,255,0.15);}
+
+h6.item{
+	font:600 13px/1.4 Arial;
+	color:#555;	
+	border-radius:0;
+	padding:3px 0 3px 28px;
+	margin:0 auto 4px;
+}
+.waveicon{
+	background:url(../img/wave-icon.png) 4px center no-repeat;
+}
+.percenticon{
+	background:url(../img/persent-icon.png) 4px center no-repeat;
+}
+
+@media only screen and (max-width:1000px) and (min-width: 1px) {
+.trendBox{width:96%;}
+.filterContent ul{width:84%;}
+}
+@media only screen and (max-width:2560px) and (min-width: 1001px) {
+.trendBox{width:1000px;}
+.filterContent ul{width:89%;}
+}
+
+.ui-widget-content{
+	overflow-x:auto;
+}

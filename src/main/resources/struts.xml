@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+<!-- 	<include file="struts-default.xml" /> -->
+<!-- 	<package name="biDefault" extends="convention-default,jfreechart-default" namespace="/"> -->
+	<package name="rsDefault" extends="struts-default" namespace="/">
+	
+	<result-types>
+      <result-type name="json" class="com.petfood.mrp.web.dispatcher.JSONResult" />
+  </result-types>
+	<!-- 
+        <result-types>
+            <result-type name="json" class="struts.jsonDispatcher" />
+            <result-type name="stringText" class="com.bi.base.dispatcher.PlainCharSequenceTextResult"/>
+            <result-type name="fusionChart" class="com.bi.fusioncharts.dispatcher.FusionChartResult"/>
+            <result-type name="stream" class="struts.streamDispatcher"/>
+            <result-type name="excel" class="struts.jxlsDispatcher"/>
+        </result-types>
+        -->
+   
+		<interceptors>
+		  <interceptor name="login" class="com.petfood.mrp.web.interceptor.LoginInterceptor"/>
+		     <!--  
+			<interceptor name="login" class="com.bi.wms.common.interceptor.LoginInterceptor"/>
+			
+			<interceptor name="biException" class="com.bi.base.interceptor.HeaderWatchExceptionMappingInterceptor"/>
+			<interceptor name="biExceptionResult" class="com.bi.base.interceptor.BaseExceptionResultInterceptor"/>
+			<interceptor name="baseGeneral" class="com.bi.wms.common.interceptor.GeneralInterceptor"></interceptor>
+			<interceptor name="extendedGeneral" class="struts.wms.extendedGeneralInterceptor"></interceptor>
+			<interceptor name="wmsFileUpload" class="struts.wmsFileUploadInterceptor"></interceptor>
+			<interceptor name="wmsAuthoritize" class="struts.wms.roleAuthorityInterceptor"></interceptor>
+			<interceptor name="wmsAccessLog" class="struts.wms.userAccessLogInterceptor"></interceptor> 
+ -->
+
+			<interceptor-stack name="basicStack">
+		
+				<interceptor-ref name="i18n">
+				    <param name="parameterName">locale</param>
+				</interceptor-ref>
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="params">
+				    <param name="excludeParams">login\..*,session\..*,^struts\..*</param>
+                </interceptor-ref>
+
+			</interceptor-stack>
+			
+			<interceptor-stack name="fullStack">
+			   <interceptor-ref name="login"/>
+			   <interceptor-ref name="basicStack"/>
+			</interceptor-stack>
+    </interceptors>
+    
+    
+	
+		<default-interceptor-ref name="fullStack" />
+        <!-- For all results related to ajax, all values are related to bi.js. If value change please bi.js as well.  -->
+		<global-results>
+			<!--<result name="error" type="redirectAction">error.exceptionPage</result>-->
+			<result name="ajaxerror" type="httpheader"><param name="error">500</param></result>
+			<result name="login" type="redirectAction">
+			     <param name="actionName">login</param>
+			</result>
+			<result name="ajaxlogin" type="httpheader"><param name="error">401</param></result>
+			<!--<result name="unauthorized" type="redirectAction">error.unauthorized</result>-->
+		</global-results>
+	
+		<global-exception-mappings>
+        <exception-mapping exception="java.lang.Exception" result="error"/>
+    </global-exception-mappings>
+    
+    <action name="login" class="web.loginAction">
+      <interceptor-ref name="basicStack"/>
+      <result>/jsp/login.jsp</result>
+      <result name="input">/jsp/login.jsp</result>
+      <result name="chain" type="redirectAction">home</result>
+    </action>
+    <action name="list" class="web.listAction">
+      <result>/jsp/list.jsp</result>
+      <result name="generateExcel" type="json">filenames</result>
+      <result name="excel" type="stream">
+        <param name="contentType">application/vnd.ms-excel</param>
+        <param name="inputName">excel</param>
+        <param name="contentDisposition">attachment;filename=%{filename}</param>
+      </result>
+      <result name="result">/jsp/listResult.jsp</result>
+    </action>
+    <action name="trendsPlot" class="web.trendsPlotAction">
+      <result>/jsp/trendsPlot.jsp</result>
+    </action>
+    <action name="channel" class="web.channelAction">
+      <result>/jsp/channel.jsp</result>
+    </action>
+    <action name="report" class="web.reportAction">
+      <result>/jsp/report.jsp</result>
+    </action>
+    <action name="home" class="web.homeAction">
+      <result>/jsp/home.jsp</result>
+    </action>
+    <action name="modifyProduct" class="web.modifyProductAction">
+      <result>/jsp/modifyProduct.jsp</result>
+      <result name="json" type="json">materials</result>
+    </action>
+    <action name="mrp" class="web.mrpAction">
+      <result>/jsp/mrp.jsp</result>
+      <result name="modifyMrp">/jsp/modifyMrp.jsp</result>
+      <result name="json" type="json">products</result>
+    </action>
+    <action name="searchProduct" class="web.searchProductAction">
+      <result>/jsp/searchProduct.jsp</result>
+    </action>
+    <action name="category" class="web.categoryAction">
+      <result>/jsp/category.jsp</result>
+      <result name="color" type="httpheader">
+        <param name="status">200</param>
+      </result>
+    </action>
+    <action name="emailCategory" class="web.emailCategoryAction">
+      <result>/jsp/category.jsp</result>
+    </action>
+    <action name="rerun" class="web.rerunAction">
+     <result name="success" type="httpheader">
+		   <param name="status">200</param>
+		 </result>
+		 <result name="nohash" type="httpheader">
+       <param name="status">208</param>
+     </result>
+     <result name="nostart" type="httpheader">
+       <param name="status">209</param>
+     </result>
+    </action>
+    <action name="account" class="web.accountAction">
+      <!--
+      <interceptor-ref name="basicStack"/>
+      -->
+      <result>/jsp/account.jsp</result>
+    </action>
+        <!-- 
+        <action name="error.exceptionPage">
+            <interceptor-ref name="baseGeneral"></interceptor-ref>
+            <interceptor-ref name="biExceptionResult"></interceptor-ref>
+            <result>/jsp/exception.jsp</result>
+        </action>
+        
+        <action name="error.tableException" class="com.bi.wms.common.web.ServerErrorAction">
+            <interceptor-ref name="baseGeneral"></interceptor-ref>
+            <interceptor-ref name="biExceptionResult"></interceptor-ref>
+            <result>maintenance.html</result>
+        </action>
+        
+        <action name="error.unauthorized" class="com.bi.wms.common.web.UnauthorizedAction">
+            <interceptor-ref name="baseGeneral"></interceptor-ref>
+            <result>/jsp/unauthorized.jsp</result>
+        </action>
+
+        <action name="error.serverError" class="com.bi.wms.common.web.ServerErrorAction">
+            <interceptor-ref name="baseGeneral"></interceptor-ref>
+            <result>/jsp/unauthorized.jsp</result>
+        </action>
+         -->
+	</package>
+	<!--
+	<include file="struts2/wms-*.xml"></include>
+	-->
+
+</struts>

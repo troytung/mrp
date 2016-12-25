@@ -1,0 +1,43 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<%--<link rel="icon" href="favicon.ico" type="image/x-icon"/>--%>
+<link rel="stylesheet" type="text/css" href="css/login-import.css"/>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'/>
+</head>
+
+<body class="loginPage">
+    <div class="loginBoxBg">
+
+        <form action="login!login.action" method="post" class="Shadow">
+            <div class="loginTitleBox">
+                <h2><span>S</span>pider<span>M</span>an Login</h2>
+            </div>
+            <article>
+            	<span style="color:red"><s:property value="errorMessage"/></span>
+            </article>
+            <article>
+            	<h6 class="username">UserName</h6>
+            	<input type="text" name="account" placeholder="Username or email">
+            </article>
+            <article>
+            	<h6 class="passwd">PassWord</h6>
+                <input placeholder="Password" type="password" name="password" class="showpassword">
+            </article>
+
+            <div class="loginBtnBox">
+            	<%--<input type="submit" name="submit" value="Log in with Twitter" class="addByTwitter">--%>
+              <input type="submit" name="submit" value="Log in" class="loginBtn">
+            </div>
+            <div class="forgetBox">
+            	<a href="#">忘記帳號 / 密碼?</a>
+            </div>
+        </form>
+    </div>
+    <s:include value="footer.jsp"/>
+</body>
+</html>

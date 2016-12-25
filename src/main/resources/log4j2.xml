@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<Properties>
+		<Property name="rootPath">/home/ec2-user/spiderman/log/</Property>
+	</Properties>
+	<appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<!-- <PatternLayout pattern="%d %-5p %C{2.} (%F:%L) - %m%n"/> -->
+			<PatternLayout pattern="%d %-5p %C (%F:%L) - %m%n"/>
+		</Console>
+		<!-- 
+		<File name="LogFile" fileName="C:/Users/troytung/Desktop/crawl_project/test.log">
+			<PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+		</File>
+		-->
+		<RollingFile name="RollingFile" fileName="${rootPath}spider.log" filePattern="${rootPath}$${date:yyyy-MM}/spider-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout pattern="%d %p %C [%t] %m%n"/>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="RollingFileHTTP" fileName="${rootPath}spiderHTTP.log" filePattern="${rootPath}$${date:yyyy-MM}/spiderHTTP-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout pattern="%d %p %C [%t] %m%n"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+        <TimeBasedTriggeringPolicy />
+      </Policies>
+    </RollingFile>
+    
+    <RollingFile name="RollingFileWarn" fileName="${rootPath}spiderWarn.log" filePattern="${rootPath}$${date:yyyy-MM}/spiderWarn-%d{MM-dd-yyyy}.log">
+      <PatternLayout pattern="%d %p %C [%t] %m%n"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+      </Policies>
+    </RollingFile>
+	</appenders>
+	<loggers>
+		<logger name="org.apache.http" level="warn" additivity="false">
+			<!-- <appender-ref ref="LogFile"/> -->
+			<appender-ref ref="RollingFileHTTP"/>
+		</logger>
+		<logger name="com.opensymphony" level="warn" additivity="false">
+			<!-- <appender-ref ref="LogFile"/> -->
+			<appender-ref ref="STDOUT"/>
+		</logger>
+		<logger name="org.springframework" level="warn" additivity="false">
+			<!-- <appender-ref ref="RollingFile"/> -->
+			<appender-ref ref="RollingFile"/>
+		</logger>
+		<root level="info">
+			<appender-ref ref="RollingFile"/>
+		</root>
+	</loggers>
+</configuration>

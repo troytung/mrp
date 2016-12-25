@@ -1,0 +1,130 @@
+@charset "utf-8";
+@import "reset.css";
+@import "common.css";
+.mainfoot{position:fixed;bottom:0;}
+.loginTitleBox{
+	/*width:500px;*/
+	margin:0 auto;
+	text-align:center;
+}
+.loginTitleBox h2{
+	display:inline-block;
+	margin:0 auto;
+	font:normal 48px/1.2 'Lato', Calibri, Arial, sans-serif;
+	color:#444;
+	letter-spacing:-2px;
+	text-align:center;
+	/*background:url(../img/spider.png) left center no-repeat;
+	padding-left:52px; */
+}
+.loginTitleBox h2 span{font:normal 60px/1.2 'Lato', Calibri, Arial, sans-serif;}
+.loginBoxBg{
+	width:480px;
+	padding:10px;
+	margin:0 auto;
+	border-radius:15px;
+	background:rgba(191,191,191, 0.5);
+	
+}
+.loginBoxBg form{
+	display:block;
+	margin:0;
+	padding:20px 10px 10px;
+	background-color:#fff;
+}
+.loginBoxBg form article{
+	/*
+	display:inline-block;*/
+	width:80%;
+	display:block;
+	margin:0 auto;
+	padding:15px 0 0;
+	font:normal 13px/1.4 Arial;
+	color:#333;
+}
+.loginBoxBg form article:first-child{padding:0;}
+.loginBoxBg form article input[type=text],.loginBoxBg form article input[type=password]{
+	width:100%;
+	border:3px solid #ddd;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+.loginBoxBg form article input[type=text]:hover,.loginBoxBg form article input[type=text]:focus,
+.loginBoxBg form article input[type=password]:hover,.loginBoxBg form article input[type=password]:focus{
+	border:3px solid #33cccc;	
+}
+.loginBoxBg form article h6{
+	font:600 13px/1.4 Arial;
+	color:#555;	
+	border-radius:0;
+	padding:3px 0 3px 28px;
+}
+.loginBoxBg form article h6.username{
+	background:url(../img/username-icon.png) 4px center no-repeat;
+}
+.loginBoxBg form article h6.passwd{
+	background:url(../img/passwd-icon.png) 4px center no-repeat;
+}
+.forgetBox{
+	margin:0 auto;
+	padding:10px 10px 0 0;
+	font:normal 13px/1.4 Arial;	
+	text-align:right;
+	border-radius:0;
+	border-top:1px dotted #aaa;
+}
+.forgetBox a{
+	color:#06C;
+	text-decoration:none;
+	padding:0 4px;	
+}
+.loginBtnBox{
+	margin:0 auto;
+	padding:10px 0 20px;
+	text-align:center;
+}
+
+
+input[type=submit].addByTwitter{
+display:inline-block;
+font:normal 15px/1.4 Arial;
+background: #34a5cf;
+background: -moz-linear-gradient(#34a5cf, #2a8ac4);
+background: -ms-linear-gradient(#34a5cf, #2a8ac4);
+background: -o-linear-gradient(#34a5cf, #2a8ac4);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#34a5cf), to(#2a8ac4));
+background: -webkit-linear-gradient(#34a5cf, #2a8ac4);
+background: linear-gradient(#34a5cf, #2a8ac4);
+border: 1px solid #2b8bc7;
+color: #ffffff;
+text-shadow: 0 -1px rgba(0,0,0,0.3);
+cursor:pointer;
+padding:6px 15px;
+}
+input[type=submit].addByTwitter:hover{
+box-shadow: inset 0 1px rgba(255,255,255,0.3), inset 0 20px 40px rgba(255,255,255,0.15);}
+
+input[type=submit].loginBtn{
+margin-left:0.6%;
+
+display:inline-block;
+font:600 15px/1.4 Arial;
+background: #fbd568;
+background: -moz-linear-gradient(#fbd568, #ffb347);
+background: -ms-linear-gradient(#fbd568, #ffb347);
+background: -o-linear-gradient(#fbd568, #ffb347);
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#fbd568), to(#ffb347));
+background: -webkit-linear-gradient(#fbd568, #ffb347);
+background: linear-gradient(#fbd568, #ffb347);
+border: 1px solid #f4ab4c;
+color: #996319;
+text-shadow: 0 1px rgba(255,255,255,0.3);
+cursor:pointer;
+padding:6px 15px;
+}
+input[type=submit].loginBtn:hover{
+box-shadow: inset 0 1px rgba(255,255,255,0.3), inset 0 20px 40px rgba(255,255,255,0.15);}
+
