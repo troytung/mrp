@@ -24,6 +24,51 @@ import com.petfood.mrp.web.manager.ProductManager;
 @Controller("web.mrpAction")
 public class MrpAction extends AbstractAction {
 
+    public static enum MrpParam {
+
+        MRP("排單", "點選日期可編輯排單", "mrp!modifyMrp.action?scheduleDt="),
+
+        VIEWMRP("打料", "點選可檢視排單", "viewMrp!viewMrp.action?scheduleDt="),
+
+        MRPPRODUCE("排單生產進度維護", "點選可維護排單生產進度", "mrpProduce!mrpProduce.action?scheduleDt="),
+
+        MRPPACK("排單包裝進度維護", "點選可維護排單包裝進度", "mrpPack!mrpPack.action?scheduleDt=");
+
+        MrpParam(String title, String desc, String actionUrl) {
+            this.title = title;
+            this.desc = desc;
+            this.actionUrl = actionUrl;
+        }
+
+        private String title;
+        private String desc;
+        private String actionUrl;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+
+        public String getActionUrl() {
+            return actionUrl;
+        }
+
+        public void setActionUrl(String actionUrl) {
+            this.actionUrl = actionUrl;
+        }
+    }
+
     @Autowired
     private CustomerManager customerManager;
 
@@ -40,9 +85,11 @@ public class MrpAction extends AbstractAction {
     private List<Product> products;
     private List<DailySchedule> scheduleLst;
     private String scheduleJson;
+    private MrpParam mrpParam;
 
     @Override
     public String execute() {
+        setupMrpParam();
         List<Date> scheduleDtLst = new ArrayList<Date>(10);
         LocalDate ld = LocalDate.now();
         for (int i = 0; i < 10; i++) {
@@ -71,6 +118,27 @@ public class MrpAction extends AbstractAction {
     public String ajaxProducts() {
         products = productManager.searchProduct(cusCode, null);
         return "json";
+    }
+
+    public String viewMrp() {
+        // TODO
+        scheduleLst = dailyScheduleManager.getByScheduleDt(scheduleDt);
+        setupMrpParam();
+        return "viewMrp";
+    }
+
+    public String mrpProduce() {
+        // TODO
+        scheduleLst = dailyScheduleManager.getByScheduleDt(scheduleDt);
+        setupMrpParam();
+        return "mrpProduce";
+    }
+
+    public String mrpPack() {
+        // TODO
+        scheduleLst = dailyScheduleManager.getByScheduleDt(scheduleDt);
+        setupMrpParam();
+        return "mrpPack";
     }
 
     public List<Date> getScheduleDtLst() {
@@ -111,6 +179,14 @@ public class MrpAction extends AbstractAction {
 
     public String getScheduleJson() {
         return scheduleJson;
+    }
+
+    public MrpParam getMrpParam() {
+        return mrpParam;
+    }
+
+    public void setupMrpParam() {
+        this.mrpParam = MrpParam.valueOf(getActionName().toUpperCase());
     }
 
 }

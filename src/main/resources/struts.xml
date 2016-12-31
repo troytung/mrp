@@ -109,6 +109,18 @@
       <result name="modifyMrp">/jsp/modifyMrp.jsp</result>
       <result name="json" type="json">products</result>
     </action>
+    <action name="viewMrp" class="web.mrpAction">
+      <result>/jsp/mrp.jsp</result>
+      <result name="viewMrp">/jsp/mrpDetail.jsp</result>
+    </action>
+    <action name="mrpProduce" class="web.mrpAction">
+      <result>/jsp/mrp.jsp</result>
+      <result name="mrpProduce">/jsp/mrpDetail.jsp</result>
+    </action>
+    <action name="mrpPack" class="web.mrpAction">
+      <result>/jsp/mrp.jsp</result>
+      <result name="mrpPack">/jsp/mrpDetail.jsp</result>
+    </action>
     <action name="searchProduct" class="web.searchProductAction">
       <result>/jsp/searchProduct.jsp</result>
     </action>
