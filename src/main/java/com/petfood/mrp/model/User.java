@@ -20,7 +20,7 @@ public class User {
     private String modifyBy;
     private DateTime modifyDt;
 
-    private String userIdErr;
+    private String userCodeErr;
     private String userNameErr;
     private String emailErr;
     private String passwordErr;
@@ -146,12 +146,12 @@ public class User {
         this.modifyDt = modifyDt;
     }
 
-    public String getUserIdErr() {
-        return userIdErr;
+    public String getUserCodeErr() {
+        return userCodeErr;
     }
 
-    public void setUserIdErr(String userIdErr) {
-        this.userIdErr = userIdErr;
+    public void setUserCodeErr(String userCodeErr) {
+        this.userCodeErr = userCodeErr;
     }
 
     public String getUserNameErr() {

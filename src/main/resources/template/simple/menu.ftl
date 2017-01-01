@@ -9,9 +9,11 @@
 <a href="searchProduct.action">產品查詢與維護</a>
 <a href="modifyProduct.action">新增產品</a>
 <a href="viewMrp.action">打料</a>
-<a href="moveInMaterial.action">原料入庫</a>
-<a href="moveOutMaterial.action">原料出庫</a>
+<a href="moveInMaterial.action">原料入庫 <span class="w3-red">尚未開發，待確認</span></a>
+<a href="moveOutMaterial.action">原料出庫 <span class="w3-red">尚未開發，待確認</span></a>
+[@s.if test="login.admin"]
 <a href="account.action">使用者帳號管理</a>
+[/@s.if]
 <br>
-<a href="logout.action">登出</a>
+<a href="login!logout.action">登出</a>
 </nav>

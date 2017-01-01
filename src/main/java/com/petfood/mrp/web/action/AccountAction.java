@@ -106,11 +106,11 @@ public class AccountAction extends AbstractAction {
         if (!edit) {
             user.setUserCode(user.getUserCode() == null ? null : user.getUserCode().trim());
             if (StringUtils.isEmpty(user.getUserCode())) {
-                user.setUserIdErr("請輸入帳號");
+                user.setUserCodeErr("請輸入帳號");
                 valid = false;
             }
             else if (accountManager.getUser(user.getUserCode()) != null) {
-                user.setUserIdErr("帳號重覆，請輸入別的帳號");
+                user.setUserCodeErr("帳號重覆，請輸入別的帳號");
                 valid = false;
             }
         }

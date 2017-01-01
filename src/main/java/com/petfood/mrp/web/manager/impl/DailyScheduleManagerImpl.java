@@ -33,4 +33,11 @@ public class DailyScheduleManagerImpl implements DailyScheduleManager {
         return dailyScheduleDao.getByScheduleDt(schedule_dt);
     }
 
+    @Override
+    public void update(List<DailySchedule> scheduleLst) {
+        for (DailySchedule ds : scheduleLst) {
+            dailyScheduleDao.update(ds);
+        }
+    }
+
 }

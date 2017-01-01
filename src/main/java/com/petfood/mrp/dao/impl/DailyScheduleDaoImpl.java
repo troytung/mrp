@@ -3,6 +3,9 @@ package com.petfood.mrp.dao.impl;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -81,7 +84,7 @@ public class DailyScheduleDaoImpl extends JdbcDaoSupport implements DailySchedul
         sps.addValue("PRODUCED_AMT", ds.getProduced_amt());
         sps.addValue("PACKED_AMT", ds.getPacked_amt());
         sps.addValue("CREATE_BY", ds.getCreate_by());
-        sps.addValue("CREATE_DT", new java.util.Date());
+        sps.addValue("CREATE_DT", Timestamp.valueOf(LocalDateTime.now()));
         return dailyScheduleInsert.execute(sps);
     }
 
@@ -98,6 +101,27 @@ public class DailyScheduleDaoImpl extends JdbcDaoSupport implements DailySchedul
     @Override
     public int deleteByScheduleDt(Date schedule_dt) {
         return getJdbcTemplate().update("DELETE FROM DAILY_SCHEDULE WHERE SCHEDULE_DT = ? ", schedule_dt);
+    }
+
+    @Override
+    public int update(DailySchedule ds) {
+        List<Object> args = new ArrayList<Object>();
+        StringBuilder sql = new StringBuilder("");
+        sql.append("UPDATE DAILY_SCHEDULE SET MODIFY_BY = ?, MODIFY_DT = ? ");
+        args.add(ds.getModify_by());
+        args.add(Timestamp.valueOf(LocalDateTime.now()));
+        if (ds.getProduced_amt() != null) {
+            sql.append(", PRODUCED_AMT = ? ");
+            args.add(ds.getProduced_amt());
+        }
+        if (ds.getPacked_amt() != null) {
+            sql.append(", PACKED_AMT = ? ");
+            args.add(ds.getPacked_amt());
+        }
+        sql.append("WHERE SCHEDULE_DT = ? AND PRO_CODE = ? ");
+        args.add(ds.getSchedule_dt());
+        args.add(ds.getPro_code());
+        return getJdbcTemplate().update(sql.toString(), args.toArray());
     }
 
 }

@@ -13,4 +13,6 @@ public interface DailyScheduleDao {
 
     List<DailySchedule> getByScheduleDt(Date schedule_dt);
 
+    int update(DailySchedule ds);
+
 }

@@ -115,6 +115,15 @@ public class MrpAction extends AbstractAction {
         return execute();
     }
 
+    public String saveMrpDetail() {
+        for (DailySchedule ds : scheduleLst) {
+            ds.setSchedule_dt(scheduleDt);
+            ds.setModify_by(getLogin().getUserCode());
+        }
+        dailyScheduleManager.update(scheduleLst);
+        return execute();
+    }
+
     public String ajaxProducts() {
         products = productManager.searchProduct(cusCode, null);
         return "json";

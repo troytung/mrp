@@ -65,6 +65,14 @@ public class LoginAction extends AbstractAction {
         }
     }
 
+    public String logout() {
+        ActionContext ctx = ActionContext.getContext();
+        Login login = (Login) ctx.getSession().get(LoginInterceptor.LOGIN_SESSION_KEY);
+        login.logout();
+        ctx.getSession().remove(LoginInterceptor.LOGIN_SESSION_KEY);
+        return SUCCESS;
+    }
+
     public String getAccount() {
         return account;
     }

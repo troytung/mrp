@@ -57,7 +57,7 @@ $(function() {
   <td><s:property value="#p.cus_name"/></td>
   <td><s:property value="#p.pro_name"/></td>
   <td><span onclick="window.location='modifyProduct!modify.action?pro_code=<s:property value="#p.pro_code"/>'" class="w3-closebtn w3-margin-right w3-medium">編輯</span>
-    <span onclick="window.location='modifyProduct!view.action?pro_code=<s:property value="#p.pro_code"/>'" class="w3-closebtn w3-margin-right w3-medium">查看</span></td>
+    <a href="modifyProduct!view.action?pro_code=<s:property value="#p.pro_code"/>" target="_blank" class="w3-closebtn w3-margin-right w3-medium">查看</a></td>
 </tr>
 </s:iterator>
 </table>

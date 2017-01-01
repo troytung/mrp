@@ -6,6 +6,12 @@ public class Login {
     private String userName;
     private boolean admin;
 
+    public void logout() {
+        this.userCode = null;
+        this.userName = null;
+        this.admin = false;
+    }
+
     public String getUserCode() {
         return userCode;
     }

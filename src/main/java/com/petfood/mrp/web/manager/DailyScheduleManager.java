@@ -11,4 +11,6 @@ public interface DailyScheduleManager {
 
     List<DailySchedule> getByScheduleDt(Date schedule_dt);
 
+    void update(List<DailySchedule> scheduleLst);
+
 }

@@ -61,7 +61,9 @@ public class ModifyProductAction extends AbstractAction {
         product.setCreate_by(getLogin().getUserCode());
         productManager.insert(product, proMats);
         pro_code = product.getPro_code();
-        return view();
+        viewOnly = true;
+        preparePro();
+        return SUCCESS;
     }
 
     private void preparePro() {
@@ -72,7 +74,7 @@ public class ModifyProductAction extends AbstractAction {
     public String view() {
         viewOnly = true;
         preparePro();
-        return SUCCESS;
+        return "view";
     }
 
     public String modify() {
